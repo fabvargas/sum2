@@ -1,0 +1,206 @@
+
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Lugares-The forest Wiki{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    <link type="text/css" rel="stylesheet" href= {% static "csswiki/lugares.css" %} >
+{% endblock %}
+
+{% block content %}
+  
+
+<center>
+    <h1 id="titulo1">Pueblos</h1>
+  </center>
+  
+  <section class="color2 letra">
+    <section class="cajacard">
+        <div class="w-33">
+            <div class="center">
+                <button class="btn btn-dark">
+                    Editar
+                </button>
+            </div>
+        </div>
+  
+      
+        <div class="container">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for pueblo in pueblos %}
+                    <div class="col">
+                        <div class="card h-100" style="background-color: rgba(0, 0, 0, 0.541);">
+                            <!-- Aquí se utiliza un 'if' para asignar la imagen correctamente -->
+                            <img src={% static pueblo.imagen %}
+                            class="card-img-top" alt="{{ pueblo.nombre }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ pueblo.nombre }}</h5>
+                                <p class="card-text">{{ pueblo.descripcion }}</p>
+  
+                                <!-- Flora -->
+                                {% if pueblo.flora %}
+                                    <p><strong>Flora:</strong> {{ pueblo.flora|join:", " }}</p>
+                                {% else %}
+                                    <p><strong>Flora:</strong> No disponible.</p>
+                                {% endif %}
+  
+                                <!-- Fauna -->
+                                {% if pueblo.fauna %}
+                                    <p><strong>Fauna:</strong> {{ pueblo.fauna|join:", " }}</p>
+                                {% else %}
+                                    <p><strong>Fauna:</strong> No disponible.</p>
+                                {% endif %}
+  
+                                <!-- Objetos -->
+                                {% if pueblo.objetos %}
+                                    <p><strong>Objetos:</strong> {{ pueblo.objetos|join:", " }}</p>
+                                {% else %}
+                                    <p><strong>Objetos:</strong> No disponible.</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>No hay pueblos disponibles.</p>
+                {% endfor %}
+            </div>
+        </div>
+      
+  
+  
+        <!-- Ubicaciones especificas-->
+        <br>
+        <br>
+        <br>
+        <br>
+        <center>
+          <h1 id=titulo1>Ubicaciones especificas</h1>
+        </center>
+        <br>
+        <br>
+  
+      
+        <div class="container">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for especial in especiales %}
+                    <div class="col">
+                        <div class="card h-100" style="background-color: rgba(0, 0, 0, 0.541);">
+                            <!-- Aquí se utiliza un 'if' para asignar la imagen correctamente -->
+                            <img src={% static especial.imagen %}
+                            class="card-img-top" alt="{{ especial.nombre }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ especial.nombre }}</h5>
+                                <p class="card-text">{{ especial.descripcion }}</p>
+  
+                                <!-- Flora -->
+                                {% if especial.flora %}
+                                    <p><strong>Flora:</strong> {{ especial.flora|join:", " }}</p>
+                                {% else %}
+                                    <p><strong>Flora:</strong> No disponible.</p>
+                                {% endif %}
+  
+                                <!-- Fauna -->
+                                {% if especial.fauna %}
+                                    <p><strong>Fauna:</strong> {{ especial.fauna|join:", " }}</p>
+                                {% else %}
+                                    <p><strong>Fauna:</strong> No disponible.</p>
+                                {% endif %}
+  
+                                <!-- Objetos -->
+                                {% if especial.objetos %}
+                                    <p><strong>Objetos:</strong> {{ especial.objetos | join:", " }}</p>
+                                {% else %}
+                                    <p><strong>Objetos:</strong> No disponible.</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>No hay pueblos disponibles.</p>
+                {% endfor %}
+            </div>
+        </div>
+       
+  
+        
+  
+        <!--Ubicaciones Variadas-->
+        <br>
+        <br>
+        <br>
+        <br>
+        <center>
+          <h1 id=titulo1>Ubicaciones Variadas</h1>
+        </center>
+        <br>
+        <br>
+  
+        <div class="container">
+          <div class="row row-cols-1 row-cols-md-3 g-4">
+              {% for variado in variados %}
+                  <div class="col">
+                      <div class="card h-100" style="background-color: rgba(0, 0, 0, 0.541);">
+                          <!-- Aquí se utiliza un 'if' para asignar la imagen correctamente -->
+                          <img src={% static variado.imagen %}
+                          class="card-img-top" alt="{{ variado.nombre }}">
+                          <div class="card-body">
+                              <h5 class="card-title">{{ variado.nombre }}</h5>
+                              <p class="card-text">{{ variado.descripcion }}</p>
+  
+                              <!-- Flora -->
+                              {% if variado.flora %}
+                                  <p><strong>Flora:</strong> {{ variado.flora | join:", " }}</p>
+                              {% else %}
+                                  <p><strong>Flora:</strong> No disponible.</p>
+                              {% endif %}
+  
+                              <!-- Fauna -->
+                              {% if variado.fauna %}
+                                  <p><strong>Fauna:</strong> {{ variado.fauna | join:", " }}</p>
+                              {% else %}
+                                  <p><strong>Fauna:</strong> No disponible.</p>
+                              {% endif %}
+  
+                              <!-- Objetos -->
+                              {% if variado.objetos %}
+                                  <p><strong>Objetos:</strong> {{ variado.objetos | join:", " }}</p>
+                              {% else %}
+                                  <p><strong>Objetos:</strong> No disponible.</p>
+                              {% endif %}
+                          </div>
+                      </div>
+                  </div>
+              {% empty %}
+                  <p>No hay pueblos disponibles.</p>
+              {% endfor %}
+          </div>
+      </div>
+  
+  
+  
+      </section>
+    </section>
+  
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,106 @@
+
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Recuperar contraseña-The forest Wiki{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" href= {% static "csslogin/login.css" %}  />
+{% endblock %}
+
+{% block content %}
+
+<section>
+  <div class="row g-0">
+      <div class="col-lg-7 d-none d-lg-block">
+          <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+                <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+              </ol>
+              <div class="carousel-inner">
+                <div class="carousel-item img-1 min-vh-100 active">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5 class="font-weight-bold">Wikipedia de The Forest</h5>
+                    <a class="text-muted text-decoration-none">Visitanos</a>
+                  </div>
+                </div>
+                <div class="carousel-item img-2 min-vh-100">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5 class="font-weight-bold">Descubre la nueva generación</h5>
+                    <a class="text-muted text-decoration-none">Visita nuestra tienda</a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+      </div>
+      <div class="col-lg-5 bg-dark d-flex flex-column align-items-end min-vh-100">
+          <div class="px-lg-5 pt-lg-4 pb-lg-3 p-4 mb-auto w-100">
+              
+          </div>
+          <div class="align-self-center w-100 px-lg-5 py-lg-4 p-4">
+          <h1 class="font-weight-bold mb-4" id="subir">Recuperar contraseña</h1>
+          <form class="mb-5">
+              <div class="mb-4">
+                <label for="exampleInputEmail1" class="form-label font-weight-bold">Email</label>
+                <input type="email" class="form-control bg-dark-x border-0" id="email" placeholder="Ingresa tu email de recuperación" aria-describedby="emailHelp" style="background-color: #ffffff;">
+
+              </div>
+              <div class="mb-4">
+                <label for="exampleInputEmail1" class="form-label font-weight-bold">Contraseña</label>
+                <input type="password" class="form-control bg-dark-x border-0" id="pass" placeholder="Ingrese su contraseña" aria-describedby="emailHelp" style="background-color: #ffffff;">
+
+              </div>
+              <div class="mb-4">
+                <label for="exampleInputEmail1" class="form-label font-weight-bold">Confirme su contraseña</label>
+                <input type="password" class="form-control bg-dark-x border-0" id="pass-con" placeholder="Vuelva a ingresar su contraseña" aria-describedby="emailHelp" style="background-color: #ffffff;">
+
+                <input type="checkbox" onclick="myFunction()"/> Mostrar Contraseña
+              </div>
+
+              
+                <button id="submit" class="button">Continuar</button>
+                <p style="text-align : center; color:red;" id="errorTxt">  </p>
+                <p style="text-align : center; color:green;" id="successTxt">  </p>
+                
+             
+              
+              
+            </form>
+
+
+          </div>
+          <div class="text-center px-lg-5 pt-lg-3 pb-lg-4 p-4 mt-auto w-100">
+              <p class="d-inline-block mb-0">¿Todavia no tienes una cuenta?</p> <a href="{% url 'registrarse' %}" class="text-light font-weight-bold text-decoration-none">Registrate</a>
+          </div>
+      </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  function myFunction() {
+    var x = document.getElementById("pass");
+    var y = document.getElementById("pass-con");
+    if (x.type === "password") {
+      x.type = "text";
+      y.type='text'
+    } else {
+      x.type = "password";
+      y.type = "password";
+    }
+  }
+  </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src={% static "js/rec-contraseña.js" %}></script>
+{% endblock %}
+
+
+
+
+
+

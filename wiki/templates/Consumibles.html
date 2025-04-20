@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Consumibles-The forest Wiki{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    <link rel=stylesheet href= {% static "csswiki/Consumibles.css"  %} />
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="container">
+  <div class="center-titulo">
+    <h1 id=titulo>Consumibles</h1>
+  </div>
+  <section class="colorl">
+      <div class="letra">
+        <div class="container">
+          <div class="w-33">
+              <div class="center">
+                <button class="btn btn-dark">
+                  Editar
+                </button>
+              </div>
+          </div>
+          <div class="center">
+              <p id="caja_bienvenida">Los consumibles son esenciales para la supervivencia, pueden restaurar o disminuir la salud , la plenitud , la hidratación , la energía , la resistencia , etc., según los tipos de consumibles que utilice.
+              </p>
+          </div>
+          <div style=overflow-x:auto>
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col-md-3"></th>
+                    <th colspan="4" style="text-align: center; font-weight: bold;">Modo normal</th>
+                    <th colspan="4" style="text-align: center; font-weight: bold;">Modo dificil</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row" class="centrart">Consumible</th>
+                    <td>Hambre</td>
+                    <td>Agua</td>
+                    <td>Vida</td>
+                    <td>Energia</td>
+                    <td>Hambre</td>
+                    <td>Agua</td>
+                    <td>Vida</td>
+                    <td>Energia</td>
+                  </tr>
+                  {% for consumible in consumibles %}
+  <tr>
+      <th scope="row" class="centrart">
+          <img src= {% static consumible.imagen %} alt="{{ consumible.nombre }}"> {{ consumible.nombre }}
+      </th>
+      <td>{{ consumible.modo_normal.hambre }}</td>
+      <td>{{ consumible.modo_normal.agua }}</td>
+      <td>{{ consumible.modo_normal.vida }}</td>
+      <td>{{ consumible.modo_normal.energia }}</td>
+      <td>{{ consumible.modo_dificil.hambre }}</td>
+      <td>{{ consumible.modo_dificil.agua }}</td>
+      <td>{{ consumible.modo_dificil.vida }}</td>
+      <td>{{ consumible.modo_dificil.energia }}</td>
+  </tr>
+  {% endfor %}
+                 </tbody>
+              </table>
+            </div>
+              
+                  
+          </div>
+
+
+
+
+
+      </div>
+  </section>
+</div>
+          
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+{% endblock %}
+
+
+
+
+
+
+    

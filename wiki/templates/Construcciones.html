@@ -1,0 +1,99 @@
+
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Constucciones-The forest Wiki{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'csswiki/Enemigos.css' %}" />
+{% endblock %}
+
+{% block content %}
+   
+<div class="container">
+    <section class="colorl">
+        <div class="letra">
+            <div class="container">
+                <div class="center-titulo">
+                    <h1 id=titulo>Construcciones</h1>
+                </div>
+                <div class="w-33">
+                    <div class="center">
+                      <button class="btn btn-dark">
+                        Editar
+                      </button>
+                    </div>
+                </div>
+            <div class="center">
+                <p id="caja_bienvenida">La construcción es una mecánica de juego que permite al jugador construir objetos como fogatas y refugios utilizando materiales accesibles, estas construccion ayudaran al jugador a sobrevivir en su dia a dia o simplemente serviran de adorno en The forest, desde fogatas que controlan la temperatura del ambiente y cocina la comida hasta un gazebo que es una estructura que solo sirve para decoracion. 
+                </p>
+            </div>
+            <div class="container">
+                <div class="d-block d-sm-block d-md-none">
+                    
+                    <h5 class="center margin-tabla">Orden de datos:</h5>
+                    
+                    <p class="center">1er bloque = Construcciones<br>2do bloque = Materiales<br>3er bloque = Descripcion</p>
+                    
+                    
+                </div>
+                <div class="margin-tabla">
+                    <div class="row">
+                            <div class="d-none d-sm-none d-md-block col-sm-3 border border-secondary fondo-tabla center">
+                                <h5>Construccion</h5>
+                            </div>
+                            <div class="d-none d-sm-none d-md-block col-sm-3 border border-secondary fondo-tabla center">
+                                <h5>Materiales</h5>
+                            </div>
+                            <div class="d-none d-sm-none d-md-block col-sm-6 border border-secondary fondo-tabla center">
+                                <h5>Descripcion</h5>
+                            </div>
+                            
+                            
+                        
+                    </div>
+                    <div class="letra">
+
+                        {% for construccion in construcciones %}
+        <div class="row">
+            <div class="col-sm-3 border border-secondary fondo-tabla center">
+                <p class="center-titulo">
+                    <img src= {% static construccion.imagen %} alt="{{ construccion.nombre }}" class="imagen img-fluid"><br>
+                    {{ construccion.nombre }}
+                </p>
+            </div>
+            <div class="col-sm-3 border border-secondary fondo-tabla">
+                <p>
+                    <ol>
+                        {% for material in construccion.materiales %}
+                            <li class="lil">{{ material }}</li>
+                        {% endfor %}
+                    </ol>
+                </p>
+            </div>
+            <div class="col-sm-6 border border-secondary fondo-tabla center">
+                <p>{{ construccion.descripcion }}</p>
+            </div>
+        </div>
+    {% endfor %}
+                    </div>
+
+
+
+
+
+        </div>
+    </section>
+</div>
+           
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+{% endblock %}
+
+
+
+ 

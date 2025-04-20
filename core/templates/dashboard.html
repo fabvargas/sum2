@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - The Forest Wiki{% endblock %}
+
+{% block content %}
+<section style="color: #fff; min-height: 100vh; padding: 10px;">
+
+    <h1 class="mb-4">Dashboard</h1>
+
+<p>Bienvenido, {{ user_email }}</p>
+
+<!-- Sells Table -->
+<h3>Sells</h3>
+<table class="table table-bordered table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>ID</th>
+      <th>User</th>
+      <th>Product Price</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if sells %}
+      {% for sell in sells %}
+      <tr>
+        <td>{{ sell.sells_id }}</td>
+        <td>{{ sell.user.user_email }}</td>
+        <td>${{ sell.product_price }}</td>
+        <td>{{ sell.product_date }}</td>
+      </tr>
+      {% endfor %}
+    {% else %}
+      <tr>
+        <td colspan="4" class="text-center">No hay ventas disponibles</td>
+      </tr>
+    {% endif %}
+  </tbody>
+</table>
+
+<!-- User Profiles Table -->
+<h3>User Profiles</h3>
+<table class="table table-bordered table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>ID</th>
+      <th>User Name</th>
+      <th>Phone</th>
+      <th>Country</th>
+      <th>City</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if profiles %}
+      {% for profile in profiles %}
+      <tr>
+        <td>{{ profile.user_profile_id }}</td>
+        <td>{{ profile.user_name }}</td>
+        <td>{{ profile.user_phone }}</td>
+        <td>{{ profile.user_country.country_name }}</td>
+        <td>{{ profile.user_city.city_name }}</td>
+      </tr>
+      {% endfor %}
+    {% else %}
+      <tr>
+        <td colspan="5" class="text-center">No hay perfiles de usuario disponibles</td>
+      </tr>
+    {% endif %}
+  </tbody>
+</table>
+
+</section>
+
+
+
+
+
+{% endblock %}
