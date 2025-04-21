@@ -13,4 +13,8 @@ urlpatterns = [
     path('login/', views.login , name='login'),
     path('pass_recovery/', views.pass_recovery , name='pass_recovery'),
     path('logout/', views.logout , name='logout'),
+    
+    path('reset_password/<uidb64>/', views.reset_password , name='restablecer_contrasena'),
+    path('changepass/<uidb64>/', views.changepass , name='chamgepass'),
 ]
+

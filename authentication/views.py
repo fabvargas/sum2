@@ -6,6 +6,12 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.contrib.auth.hashers import make_password, check_password
 from core.models import User,UserType,Country, UserProfile
+from django.core.mail import send_mail
+from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes
+
+from django.utils.http import urlsafe_base64_decode
+
 
 # Create your views here.
 
@@ -27,7 +33,8 @@ def recuperar_contrasena(request):
     
     return render(request, 'recuperarcontra.html')
 
-
+def reset_password(request, uidb64):
+    return render(request, 'reset_password.html', {'uidb64': uidb64})
 
 
 
@@ -120,30 +127,67 @@ def login(request):
 
 @csrf_exempt
 def pass_recovery(request):
-    if request.method == 'PUT':
+    if request.method == 'POST':
         try:
             data = json.loads(request.body)
-
             email = data.get('email')
-            nueva_contrasena = data.get('contrasena')
 
-            if not email or not nueva_contrasena:
-                return JsonResponse({'success': False, 'error': 'Correo y contraseña son obligatorios.'}, status=400)
+            if not email:
+                return JsonResponse({'success': False, 'error': 'Email es requerido.'}, status=400)
 
-            user = User.objects.filter(user_email=email).first()
+            try:
+                user = User.objects.get(user_email=email)
+            except User.DoesNotExist:
+                return JsonResponse({'success': False, 'error': 'Usuario no encontrado con ese email.'}, status=404)
+            
+                  
+            uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
 
-            if not user:
+            reset_link = f'http://127.0.0.1:8000/auth/reset_password/{uidb64}'
+
+          
+            send_mail(
+                'Recuperación de contraseña',
+                f'Hola {user.user_email},\n\nPara restablecer tu contraseña, haz clic en el siguiente enlace:\n\n{reset_link}\n\n'
+                'Si no solicitaste este correo, puedes ignorarlo.',
+                'noreply@tusitio.com',
+                [email],
+                fail_silently=False,
+            )
+
+            return JsonResponse({'success': True, 'message': 'Correo de recuperación enviado.'})
+        except json.JSONDecodeError:
+            return JsonResponse({'success': False, 'error': 'JSON inválido.'}, status=400)
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)}, status=500)
+
+    return JsonResponse({'success': False, 'error': 'Método no permitido.'}, status=405)
+
+@csrf_exempt
+def changepass(request, uidb64):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            
+            user_id = urlsafe_base64_decode(uidb64).decode('utf-8')
+      
+            new_password = data.get('contrasena')
+
+            if  not new_password:
+                return JsonResponse({'success': False, 'error': 'Todos los campos son obligatorios.'}, status=400)
+
+            user = User.objects.get(user_id=user_id)
+            
+            if user:
+                hashed_password = make_password(new_password)
+                user.user_password = hashed_password
+                user.save()
+                return JsonResponse({'success': True, 'message': 'Contraseña actualizada correctamente.'})
+            else:
                 return JsonResponse({'success': False, 'error': 'Usuario no encontrado.'}, status=404)
 
-            # Hashear la nueva contraseña y guardarla
-            hashed_password = make_password(nueva_contrasena)
-            user.user_password = hashed_password
-            user.save()
-
-            return JsonResponse({'success': True, 'message': 'Contraseña actualizada correctamente.'})
-
         except json.JSONDecodeError:
-            return JsonResponse({'success': False, 'error': 'Datos inválidos.'}, status=400)
+            return JsonResponse({'success': False, 'error': 'Datos JSON inválidos.'}, status=400)
 
     return JsonResponse({'success': False, 'error': 'Método no permitido.'}, status=405)
 
