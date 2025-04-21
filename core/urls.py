@@ -9,4 +9,10 @@ urlpatterns = [
     
     path('comprar/', views.comprar , name='comprar'),
     
+    path('sells/eliminar/<int:sell_id>/', views.eliminar_sell, name='eliminar_sell'),
+    path('sells/editar/<int:sell_id>/', views.editar_sell, name='editar_sell'),
+
+    path('perfil/eliminar/<int:user_id>/', views.eliminar_perfil, name='eliminar_perfil'),
+    path('perfil/editar/<int:user_id>/', views.editar_perfil, name='editar_perfil'),
+    
 ]

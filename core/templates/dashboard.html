@@ -11,27 +11,35 @@
 
 <!-- Sells Table -->
 <h3>Sells</h3>
-<table class="table table-bordered table-striped">
+<table class="table table-bordered table-striped " >
   <thead class="table-dark">
     <tr>
       <th>ID</th>
       <th>User</th>
       <th>Product Price</th>
       <th>Date</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     {% if sells %}
       {% for sell in sells %}
-      <tr>
+      <tr class="table-light">
         <td>{{ sell.sells_id }}</td>
         <td>{{ sell.user.user_email }}</td>
-        <td>${{ sell.product_price }}</td>
+        <td>${{ sell.product.product_price }}</td>
         <td>{{ sell.product_date }}</td>
+        <td>
+          <!-- Botón Editar -->
+          <a href="{% url 'editar_sell' sell.sells_id %}" class="btn btn-sm btn-warning">Editar</a>
+
+          <!-- Botón Eliminar -->
+          <a href="{% url 'eliminar_sell' sell.sells_id %}" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar esta venta?')">Eliminar</a>
+        </td>
       </tr>
       {% endfor %}
     {% else %}
-      <tr>
+      <tr  class="table-light">
         <td colspan="4" class="text-center">No hay ventas disponibles</td>
       </tr>
     {% endif %}
@@ -47,22 +55,30 @@
       <th>User Name</th>
       <th>Phone</th>
       <th>Country</th>
-      <th>City</th>
+      <th>Actions</th>
+  
     </tr>
   </thead>
   <tbody>
     {% if profiles %}
       {% for profile in profiles %}
-      <tr>
-        <td>{{ profile.user_profile_id }}</td>
+      <tr class="table-light">
+        <td>{{ profile.user_id }}</td>
         <td>{{ profile.user_name }}</td>
         <td>{{ profile.user_phone }}</td>
         <td>{{ profile.user_country.country_name }}</td>
-        <td>{{ profile.user_city.city_name }}</td>
+        <td>
+          <!-- Botón Editar -->
+          <a href="{% url 'editar_perfil' profile.user_id %}" class="btn btn-sm btn-warning">Editar</a>
+
+          <!-- Botón Eliminar -->
+          <a href="{% url 'eliminar_perfil' profile.user_id %}" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar este perfil?')">Eliminar</a>
+        </td>
+
       </tr>
       {% endfor %}
     {% else %}
-      <tr>
+      <tr  class="table-light"> 
         <td colspan="5" class="text-center">No hay perfiles de usuario disponibles</td>
       </tr>
     {% endif %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Editar Perfil{% endblock %}
+
+{% block content %}
+<div class="container mt-5" style="min-height: 100vh; color: #fff;">
+  <h2 class="mb-4">Editar Perfil</h2>
+
+  <form method="POST">
+ 
+
+    <div class="mb-3">
+      <label class="form-label">Nombre</label>
+      <input type="text" class="form-control" id="name" name="name" value="{{ profile.user_name }}" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Teléfono</label>
+      <input type="text" class="form-control" id="phone" name="phone" value="{{ profile.user_phone }}" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">País</label>
+      <select name="country" class="form-control" id="country" required value="{{ country }}">
+        <option value="Chile">Chile</option>
+        <option value="Argentina">Argentina</option>
+        <option value="Peru">Peru</option>
+        <option value="Colombia">Colombia</option>
+        <option value="Mexico">Mexico</option>
+        <option value="Uruguay">Uruguay</option>
+        <option value="Paraguay">Paraguay</option>
+        <option value="Bolivia">Bolivia</option>
+    
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary" id="submitBtn">Guardar Cambios</button>
+    <a href="{% url 'dashboard' %}" class="btn btn-secondary">Cancelar</a>
+  </form>
+
+  <p style="text-align : center; color:red;" id="errorTxt">  </p>
+                <p style="text-align : center; color:green;" id="successTxt">  </p>
+</div>
+{% endblock %}
+
+{% block scripts %}
+
+<script src="{% static 'js/changeUser2.js' %}"></script>
+{% endblock %}
