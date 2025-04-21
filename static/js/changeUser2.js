@@ -1,6 +1,7 @@
 const nameInput = document.getElementById("name");
 const phoneInput = document.getElementById("phone");
 const countryInput = document.getElementById("country");
+const typeUserInput = document.getElementById("userType");
 const submitBtn = document.getElementById("submitBtn");
 
 const errorTxt = document.getElementById("errorTxt");
@@ -60,7 +61,9 @@ submitBtn.addEventListener("click", (event) => {
             body: JSON.stringify({
                 name: nameInput.value,
                 phone: phoneInput.value,
-                country: countryInput.value
+                country: countryInput.value,
+                user_type: typeUserInput.value,  
+                
             }),
         })
         .then(response => 

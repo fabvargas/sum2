@@ -21,19 +21,27 @@
     </div>
 
     <div class="mb-3">
-      <label class="form-label">País</label>
-      <select name="country" class="form-control" id="country" required value="{{ country }}">
-        <option value="Chile">Chile</option>
-        <option value="Argentina">Argentina</option>
-        <option value="Peru">Peru</option>
-        <option value="Colombia">Colombia</option>
-        <option value="Mexico">Mexico</option>
-        <option value="Uruguay">Uruguay</option>
-        <option value="Paraguay">Paraguay</option>
-        <option value="Bolivia">Bolivia</option>
-    
-      </select>
-    </div>
+        <label class="form-label">País</label>
+        <select name="country" class="form-control" id="country" required>
+          <option value="Chile" {% if country == "Chile" %}selected{% endif %}>Chile</option>
+          <option value="Argentina" {% if country == "Argentina" %}selected{% endif %}>Argentina</option>
+          <option value="Peru" {% if country == "Peru" %}selected{% endif %}>Peru</option>
+          <option value="Colombia" {% if country == "Colombia" %}selected{% endif %}>Colombia</option>
+          <option value="Mexico" {% if country == "Mexico" %}selected{% endif %}>Mexico</option>
+          <option value="Uruguay" {% if country == "Uruguay" %}selected{% endif %}>Uruguay</option>
+          <option value="Paraguay" {% if country == "Paraguay" %}selected{% endif %}>Paraguay</option>
+          <option value="Bolivia" {% if country == "Bolivia" %}selected{% endif %}>Bolivia</option>
+        </select>
+      </div>
+
+    <div class="mb-3">
+        <label class="form-label">Type</label>
+        <select class="form-control" id="userType" required value="{{user_type}}">
+            <option value="user" {% if user_type == "user" %}selected{% endif %}>Usuario</option>
+            <option value="admin" {% if user_type == "admin" %}selected{% endif %}>Administrador</option>
+  
+        </select>
+      </div>
 
     <button type="submit" class="btn btn-primary" id="submitBtn">Guardar Cambios</button>
     <a href="{% url 'dashboard' %}" class="btn btn-secondary">Cancelar</a>

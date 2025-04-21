@@ -10,13 +10,14 @@
 <p>Bienvenido, {{ user_email }}</p>
 
 <!-- Sells Table -->
-<h3>Sells</h3>
+<h3>Ventas</h3>
 <table class="table table-bordered table-striped " >
   <thead class="table-dark">
     <tr>
       <th>ID</th>
       <th>User</th>
       <th>Product Price</th>
+      <th>Product</th>
       <th>Date</th>
       <th>Actions</th>
     </tr>
@@ -28,6 +29,7 @@
         <td>{{ sell.sells_id }}</td>
         <td>{{ sell.user.user_email }}</td>
         <td>${{ sell.product.product_price }}</td>
+        <td>{{ sell.product.product_name }}</td>
         <td>{{ sell.product_date }}</td>
         <td>
           <!-- Botón Editar -->
@@ -55,6 +57,7 @@
       <th>User Name</th>
       <th>Phone</th>
       <th>Country</th>
+      <th>Type</th>
       <th>Actions</th>
   
     </tr>
@@ -67,6 +70,7 @@
         <td>{{ profile.user_name }}</td>
         <td>{{ profile.user_phone }}</td>
         <td>{{ profile.user_country.country_name }}</td>
+        <td>{{ profile.user.user_type.user_type_name }}</td>
         <td>
           <!-- Botón Editar -->
           <a href="{% url 'editar_perfil' profile.user_id %}" class="btn btn-sm btn-warning">Editar</a>

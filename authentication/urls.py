@@ -7,7 +7,7 @@ urlpatterns = [
     path('registrarse/', views.registrarse , name='registrarse'),
     path('inicio_sesion/', views.inicio_sesion , name='inicio_sesion'),
     path('mi_cuenta/', views.mi_cuenta , name='mi_cuenta'),
-    path('recuperar_contraseña/', views.recuperar_contraseña , name='recuperar_contraseña'),
+    path('recuperar_contrasena/', views.recuperar_contrasena , name='recuperar_contrasena'),
 
     path('registrar_usuario/', views.registrar_usuario , name='registrar_usuario'),
     path('login/', views.login , name='login'),

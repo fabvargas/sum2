@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Editar Perfil{% endblock %}
+
+{% block content %}
+<div class="container mt-5" style="min-height: 100vh; color: #fff;">
+  <h2 class="mb-4">Editar Perfil</h2>
+
+  <form method="POST">
+
+    <input type="hidden" id="sellId" value="{{ sell.sells_id }}">
+    <input type="hidden" id="userId" value="{{ sell.user.user_id }}">
+ 
+
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input readonly type="text" class="form-control" id="email" value="{{ sell.user.user_email}}" required>
+    </div>
+
+  
+
+    <div class="mb-3">
+      <label for="version" class="form-label font-weight-bold">Versión</label>
+      <select class="form-control bg-dark-x border-0" id="version" style="background-color: #ffffff;">
+        <option value="the forest" {% if sell.product.product_name == "the forest" %}selected{% endif %}>The Forest</option>
+        <option value="son of the forest" {% if sell.product.product_name == "son of the forest" %}selected{% endif %}>Sons of the Forest</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label font-weight-bold">Precio</label>
+      <input type="text" class="form-control bg-dark-x border-0" value={{sell.product.product_price}} id="precio"  aria-describedby="emailHelp" style="background-color: #ffffff;">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Fecha</label>
+        <input type="date" class="form-control" id="fecha" name="name" value="{{ sell.product_date|date:'Y-m-d' }}" required>
+      </div>
+
+    <button type="submit" class="btn btn-primary" id="submitBtn">Guardar Cambios</button>
+    <a href="{% url 'dashboard' %}" class="btn btn-secondary">Cancelar</a>
+  </form>
+
+  <p style="text-align : center; color:red;" id="errorTxt">  </p>
+                <p style="text-align : center; color:green;" id="successTxt">  </p>
+</div>
+{% endblock %}
+
+{% block scripts %}
+
+<script src="{% static 'js/changeSell.js' %}"></script>
+{% endblock %}

@@ -51,7 +51,7 @@ function validarFormulario() {
 button.addEventListener("click", (event) => {
     event.preventDefault(); 
     if (validarFormulario()) {      
-       fetch("/pass_recovery/",{
+       fetch("/auth/pass_recovery/",{
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

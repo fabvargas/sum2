@@ -28,7 +28,7 @@ class User(models.Model):
     user_type = models.ForeignKey(UserType, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.user_id} | {self.user_name} | {self.user_email} | {self.user_type} | {self.country} | {self.city}"
+        return f"{self.user_id} | {self.user_email} | {self.user_type} "
 
 
 class UserProfile(models.Model):

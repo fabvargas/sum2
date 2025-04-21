@@ -22,7 +22,7 @@ def mi_cuenta(request):
 
     return render(request, 'micuentatf.html')
 
-def recuperar_contraseña(request):
+def recuperar_contrasena(request):
   
     
     return render(request, 'recuperarcontra.html')
@@ -130,14 +130,14 @@ def pass_recovery(request):
             if not email or not nueva_contrasena:
                 return JsonResponse({'success': False, 'error': 'Correo y contraseña son obligatorios.'}, status=400)
 
-            user = User.objects.filter(email=email).first()
+            user = User.objects.filter(user_email=email).first()
 
             if not user:
                 return JsonResponse({'success': False, 'error': 'Usuario no encontrado.'}, status=404)
 
             # Hashear la nueva contraseña y guardarla
             hashed_password = make_password(nueva_contrasena)
-            user.password = hashed_password
+            user.user_password = hashed_password
             user.save()
 
             return JsonResponse({'success': True, 'message': 'Contraseña actualizada correctamente.'})
