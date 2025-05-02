@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'core',
     'wiki',
     'authentication',
+    'rest_framework',
+   'rest_api',
+    
   
 ]
 
@@ -69,7 +72,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'wiki_forest.context_processors.user_info'
+                'wiki_forest.context_processors.user_info',
+                'wiki_forest.context_processors.valor_dolar',
+                 'wiki_forest.context_processors.valor_criptomonedas',
+               
             ],
         },
     },

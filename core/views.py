@@ -14,10 +14,19 @@ def home(request):
 
 
 def foro(request):
-  
+    
     return render(request, 'forowiki.html')
 
 def dashboard(request):
+    
+   
+    
+    is_admin = request.session.get('user_type') == 'admin'
+    
+    if not is_admin:
+        return redirect('home')
+    
+
 
     countries = Country.objects.all()
     profiles = UserProfile.objects.all()

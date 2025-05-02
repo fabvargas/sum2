@@ -21,7 +21,10 @@ def registrarse(request):
     return render(request, 'registrase_wiki.html')
 
 def inicio_sesion(request):
-
+  
+    # usuario admin calve = ASDasd123
+    # otros usuraios clave = asdASD123    
+    
     return render(request, 'inicio_sesion_wiki.html')
 
 def mi_cuenta(request):
@@ -39,7 +42,7 @@ def reset_password(request, uidb64):
 
 
 
-@csrf_exempt  # Solo para pruebas. Usa CSRF en producción
+@csrf_exempt  
 def registrar_usuario(request):
     print(request.body)
     if request.method == 'POST':
@@ -89,7 +92,7 @@ def registrar_usuario(request):
 
     return JsonResponse({'status': 'error', 'message': 'Método no permitido.'}, status=405)
 
-@csrf_exempt  # Para pruebas. En producción, protege con CSRF
+@csrf_exempt 
 def login(request):
     if request.method == 'POST':
         try:
