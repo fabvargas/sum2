@@ -1,4 +1,5 @@
 from django.urls import path
+from rest_framework.authtoken.views import obtain_auth_token
 from . import views
 
 urlpatterns = [
@@ -8,3 +9,4 @@ urlpatterns = [
     path('usuario/', views.profile_view, name='perfil_list'),
     path('usuario/<int:user_id>/', views.profile_view, name='perfil_detail'),
 ]
+

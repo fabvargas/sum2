@@ -11,6 +11,7 @@ def user_info(request):
         'user_id' : request.session.get('user_id'),
     }
     
+    
 def valor_dolar(request):
     try:
         response = requests.get('https://cl.dolarapi.com/v1/cotizaciones/usd', timeout=5)

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'authentication',
     'rest_framework',
    'rest_api',
+
     
   
 ]
@@ -81,6 +82,9 @@ TEMPLATES = [
     },
 ]
 
+
+
+
 WSGI_APPLICATION = 'wiki_forest.wsgi.application'
 
 
@@ -116,6 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
 
 
 # Internationalization

@@ -5,6 +5,8 @@ from core.models import UserProfile, Sells
 from .serializers import UserProfileSerializer, SellSerializer
 from django.views.decorators.csrf import csrf_exempt
 
+
+
 @csrf_exempt
 @api_view(['GET'])
 def profile_view(request, user_id=None):
@@ -27,6 +29,8 @@ def profile_view(request, user_id=None):
             )
         serializer = UserProfileSerializer(profiles, many=True)
         return Response(serializer.data)
+
+
 
 @csrf_exempt
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
